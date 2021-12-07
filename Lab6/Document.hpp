@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <list>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -13,24 +14,23 @@ class Document {
 	
 	public :
 	Document(void); // costruttore di default
-	Document(istream& input);
+	Document(ifstream& input);
 	Document(const Document& d); //copy constructor
 	Document(Document&& d); //moving constructor
-	Document& operator=(Document&& d) //assegnamento move
+	Document& operator=(Document&& d); //assegnamento move
 	Document& operator=(const Document& d); //assegnamento di copia
-	~Document(); //destructor
 	
 	void add_line(const string& _s);
-	void read_line(istream& input);
+	void read_line(ifstream& input);
 	int size() const;
 	int char_count() const;
 	int char_count_no_whitespaces() const;
 	void find_replace(const string& _find, const string& _replace);
-	
-	//creare metodi begin e end per fare degli iteratori
+
+	list<string>::iterator end(void);
+	list<string>::iterator begin(void);	
 };
 
-ostream& operator<<(ostream& o, const Document& d);
-
+ostream& operator<<(ostream& o, Document& d);
 
 #endif
