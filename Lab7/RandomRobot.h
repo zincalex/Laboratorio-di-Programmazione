@@ -5,8 +5,7 @@
 
 class  RandomRobot : public Robot {
 	public : 
-	void move(Maze& m);
-}
-
+	void move(Maze& m) override;
+};
 
 #endif

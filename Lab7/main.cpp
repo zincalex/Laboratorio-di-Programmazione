@@ -1,17 +1,15 @@
-#include <fstream>
-#include <iostream>
-#include "Maze.cpp"
+#include "Maze.h"
+
 using namespace std;
 
-int main{
-	ifstream inFile;
-	inFile.open("input.txt");
-	if(!inFile) {
-		cout << "Cant open file";
-		exit(1);
-	}
-	
-	Maze m (inFile);
-	cout << m.printMaze();
+int main() {
+    ifstream inFile;
+    inFile.open(".\\input.txt");
+    if(!inFile) {
+        cout << "Unable to open file input.txt";
+        exit(1);
+    }
+    Maze mazeRunner{inFile};
+    mazeRunner.printMaze();
 	return 0;
 }

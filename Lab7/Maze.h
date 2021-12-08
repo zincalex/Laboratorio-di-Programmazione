@@ -2,21 +2,23 @@
 #define MAZE_H
 
 #include <fstream>
+#include <iostream>
 
 class Maze {
 	private :
-		char[][] labyrinth;
-		short colBot, rowBot;
-		
+		char labyrinth[9][9];
+
 	public :
-	Maze(ifstream& _in);
+		Maze(std::ifstream& _in);
 
-	bool updateCorBot(short row, short col);
-	
-	void printMaze()const;
-	short[][] getBotPos() const;
-	bool isExit() const;
-}
+		bool accetableMove(short movR, short movC) const;
+		bool isExit(short rowB, short colB) const;
+		void printMaze() const;
 
+		char** getLabyrinth() const;
+		
+		
+		//void swapRobot(short movR, short movC);
+};
 
 #endif

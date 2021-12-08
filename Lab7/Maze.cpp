@@ -2,48 +2,47 @@
 #define MAZE_CPP
 
 #include "Maze.h"
-Maze::Maze(ifstream& _in) {
-	char elem;
-	int i = 0;
-	while(in >> elem) {
-			if(elem == 'S') {
-				rowBot = i/9;
-				colBot = i%9;
-			}
-			labyrinth[i/9][i%9] = elem;
-			i++;
-		}
-}
 
-bool Maze::updateCorBot(short movRow, short movCol) { 
-	if(labyrinth[rowBot + movRow][colBot + movCol] == '*') {
-		return false;
+Maze::Maze(std::ifstream& _in) {
+	std::string elem;
+	int i = 0;
+	while(std::getline(_in, elem)) {
+		for(unsigned int j = 0; j < 9; j++) {
+			labyrinth[i][j] = elem[j];
+		}
+		i++;
 	}
-	labyrinth[rowBot + movRow][colBot + movCol] = 'S'
-	labyrinth[rowBot][colBot] = '';
-	colBot = movCol;
-	rowBot = movRow;
 }
 
 void Maze::printMaze()const {
-	int createspace = 0;
-	while(createspace < 15)
-		std::cout << '\n';
 	for(unsigned int i = 0; i < 81; i++) {
 		std::cout << labyrinth[i/9][i%9];
+		if(((i+1)%9) == 0)
+			std::cout << '\n';
+	}
+	for(unsigned int i = 0; i < 5; i++) {
+		std::cout << '\n';
 	}
 }
 
-short[][] Maze::getBotPos() const {
-	//short[][] botPos {rowBot, colBot};
-	return {rowBot, colBot};
+bool Maze::isExit(short rowB, short colB) const {
+	return labyrinth[rowB][colB] == 'E';
 }
 
-bool Maze::isExit() const {
-	return labyrinth[rowBot][colBot] == 'E';
+bool Maze::accetableMove(short movR, short movC) const { 
+	if(isExit(movR, movC))
+		return true;
+	return movR > 8 || movR < 0 || movC > 8 || movC < 0 || labyrinth[movR][movC] == '*'; 
 }
 
+char** Maze::getLabyrinth() const { return *labyrinth; }
+/*
+void Maze::swapRobot(short movR, short movC) {
+	
+	if(accetableMove(movR, movC))
+		char temp;
+		labyrinth[][]
+	
 }
-
-
+*/
 #endif

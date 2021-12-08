@@ -4,9 +4,11 @@
 #include "Robot.h"
 
 class RightHandRuleRobot : public Robot {
-	public : 
-	void move(Maze& m);
-}
+	private :
+		bool close_wall;
 
+	public : 
+		void move(Maze& m) override;
+};
 
 #endif
