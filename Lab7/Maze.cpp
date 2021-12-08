@@ -9,12 +9,16 @@ Maze::Maze(std::ifstream& _in) {
 	while(std::getline(_in, elem)) {
 		for(unsigned int j = 0; j < 9; j++) {
 			labyrinth[i][j] = elem[j];
+			if(labyrinth[i][j] == 'E') {
+				exitCol = j;
+				exitRow = i;
+			}
 		}
 		i++;
 	}
 }
 
-void Maze::printMaze()const {
+void Maze::printMaze() const {
 	for(unsigned int i = 0; i < 81; i++) {
 		std::cout << labyrinth[i/9][i%9];
 		if(((i+1)%9) == 0)
@@ -35,14 +39,9 @@ bool Maze::accetableMove(short movR, short movC) const {
 	return movR > 8 || movR < 0 || movC > 8 || movC < 0 || labyrinth[movR][movC] == '*'; 
 }
 
-char** Maze::getLabyrinth() const { return *labyrinth; }
-/*
-void Maze::swapRobot(short movR, short movC) {
-	
-	if(accetableMove(movR, movC))
-		char temp;
-		labyrinth[][]
-	
-}
-*/
+short Maze::getExitRow() const { return exitRow; }
+short Maze::getExitCol() const { return exitCol; }
+
+char* Maze::getLabyrinth() const  { return &labyrinth; }
+
 #endif

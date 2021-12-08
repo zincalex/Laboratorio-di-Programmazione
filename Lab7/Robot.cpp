@@ -4,14 +4,20 @@
 #include "Robot.h"
 
 Robot::Robot(Maze& m) {
-    for(unsigned int i = 0; i < 81; i++) {
-		if(labyrinth[i/9][i%9] == 'S') {
-            rowBot = i/9;
-            colBot = i%9;
-        }
+  char* labyrinth = m.getLabyrinth();
+  for(unsigned int i = 0; i < 81; i++) {
+    std::cout << *labyrinth;
+		if(*labyrinth == 'S') {
+      rowBot = i/9;
+      colBot = i%9;
+      }
+      labyrinth++;
 	}
 }
 
-bool atExit(const Maze& m);
+bool Robot::atExit(const Maze& m) {
+  return m.getExitCol() == colBot && m.getExitRow() == rowBot;
+}
+
 
 #endif

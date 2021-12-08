@@ -7,6 +7,7 @@
 class Maze {
 	private :
 		char labyrinth[9][9];
+		short exitRow, exitCol;
 
 	public :
 		Maze(std::ifstream& _in);
@@ -15,10 +16,9 @@ class Maze {
 		bool isExit(short rowB, short colB) const;
 		void printMaze() const;
 
-		char** getLabyrinth() const;
-		
-		
-		//void swapRobot(short movR, short movC);
+		short getExitRow() const;
+		short getExitCol() const;
+		char* getLabyrinth() const;
 };
 
 #endif
