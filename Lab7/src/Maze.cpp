@@ -28,9 +28,6 @@ void Maze::printMaze() const {
 		if(((i+1)%9) == 0)
 			std::cout << '\n';
 	}
-	for(unsigned int i = 0; i < 5; i++) {
-		std::cout << '\n';
-	}
 }
 
 bool Maze::atExit() const {
@@ -50,6 +47,9 @@ void Maze::updateLabyrinth(short dy, short dx) {
 	if(labyrinth[robotRow + dy][robotCol + dx] != 'E') {
 		labyrinth[robotRow][robotCol] = ' ';
 		labyrinth[robotRow + dy][robotCol + dx] = 'S';
+		robotRow = robotRow + dy;
+		robotCol = robotCol + dx;
+
 	}
 	else {
 		labyrinth[robotRow][robotCol] = ' ';
