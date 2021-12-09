@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libRandomRobot.a CMakeFiles/RandomRobot.dir/src/RandomRobot.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libRandomRobot.a

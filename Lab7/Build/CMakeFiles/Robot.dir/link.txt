@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libRobot.a CMakeFiles/Robot.dir/src/Robot.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libRobot.a

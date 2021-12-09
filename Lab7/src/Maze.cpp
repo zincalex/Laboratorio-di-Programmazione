@@ -1,7 +1,7 @@
 #ifndef MAZE_CPP
 #define MAZE_CPP
 
-#include "Maze.h"
+#include "../include/Maze.h"
 
 Maze::Maze(std::ifstream& _in) {
 	std::string elem;
@@ -12,6 +12,10 @@ Maze::Maze(std::ifstream& _in) {
 			if(labyrinth[i][j] == 'E') {
 				exitCol = j;
 				exitRow = i;
+			}
+			if(labyrinth[i][j] == 'S') {
+				robotCol = j;
+				robotRow = i;
 			}
 		}
 		i++;
@@ -29,19 +33,29 @@ void Maze::printMaze() const {
 	}
 }
 
-bool Maze::isExit(short rowB, short colB) const {
-	return labyrinth[rowB][colB] == 'E';
+bool Maze::atExit() const {
+	return labyrinth[robotRow][robotCol] == 'E';
 }
 
 bool Maze::accetableMove(short movR, short movC) const { 
-	if(isExit(movR, movC))
-		return true;
-	return movR > 8 || movR < 0 || movC > 8 || movC < 0 || labyrinth[movR][movC] == '*'; 
+	return movR <= 8 && movR >= 0 && movC <= 8 && movC >= 0 && labyrinth[movR][movC] != '*'; 
 }
 
 short Maze::getExitRow() const { return exitRow; }
 short Maze::getExitCol() const { return exitCol; }
+short Maze::getBotRow() const { return robotRow; }
+short Maze::getBotCol() const { return robotCol; }
 
-char* Maze::getLabyrinth() const  { return &labyrinth; }
+void Maze::updateLabyrinth(short dy, short dx) {
+	if(labyrinth[robotRow + dy][robotCol + dx] != 'E') {
+		labyrinth[robotRow][robotCol] = ' ';
+		labyrinth[robotRow + dy][robotCol + dx] = 'S';
+	}
+	else {
+		labyrinth[robotRow][robotCol] = ' ';
+		robotRow = exitRow;
+		robotCol = exitCol;
+	}
+}
 
 #endif

@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libMaze.a CMakeFiles/Maze.dir/src/Maze.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libMaze.a

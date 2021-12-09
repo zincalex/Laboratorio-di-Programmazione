@@ -1,5 +1,6 @@
 #include "Maze.h"
 #include "Robot.h"
+#include "RandomRobot.h"
 
 using namespace std;
 
@@ -12,5 +13,16 @@ int main() {
     }
     Maze mazeRunner{inFile};
     mazeRunner.printMaze();
+    RandomRobot walle(mazeRunner);
+
+    int i = -1 + (rand());
+    int j = -1 + (rand());
+    cout << i << j << endl;
+    /*
+    if(!mazeRunner.atExit()) {
+        walle.move(mazeRunner);
+        mazeRunner.printMaze();
+    }
+    */
 	return 0;
 }
