@@ -14,6 +14,8 @@ class unique_ptr {
     ~unique_ptr();
 
     T* relese();
+    T* operator->();
+    T operator*();
      
     unique_ptr(const unique_ptr& other) = delete;
     unique_ptr& operator=(const unique_ptr& other) = delete;

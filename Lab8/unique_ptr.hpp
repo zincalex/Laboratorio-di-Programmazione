@@ -14,6 +14,15 @@ template<typename T>
 unique_ptr<T>::unique_ptr(unique_ptr&& _x) noexcept {
     ptr = _x;
 }
+template<typename T>
+T* unique_ptr<T>::operator->() {
+    return ptr;
+}
+
+template<typename T>
+T unique_ptr<T>::operator*() {
+    return *ptr;
+}
 
 template<typename T>
 unique_ptr<T>::~unique_ptr() {
